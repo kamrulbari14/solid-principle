@@ -1,41 +1,55 @@
 package com.kamrul.solid.principle.srp.violating;
 
-import lombok.RequiredArgsConstructor;
+import com.kamrul.solid.principle.srp.following.SrpUser;
+import java.nio.charset.StandardCharsets;
+import java.util.Arrays;
+import java.util.Base64;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-/** Some points to check out in this class are
- * We have some save, update and delete methods which need database connectivity.
- * Database connectivity can not be a job for this simple User class.
- * On the other hand we have another method to send email which need another job to be done.
- * So, we are violating SRP(Single Responsibility Principle) by giving this class a lot of tasks.
- *
- *** ({@link com.kamrul.solid.principle.srp.following.User}
- *** ({@link com.kamrul.solid.principle.srp.following.UserManager}
- *** ({@link com.kamrul.solid.principle.srp.following.UserRepository}
-   look at these classes where SRP is followed properly, by giving them specific tasks.}).
- ***
- * */
+/**
+ * Some points to check out in this class are:
+ * - We have some save, update, and delete methods which require database connectivity.
+ *   Database connectivity cannot be a job for this simple User class.
+ * - On the other hand, we have another method to send email, which requires another job to be done.
+ * - So, we are violating SRP (Single Responsibility Principle) by giving this class a lot of tasks.
+ * - Look at these classes where SRP is followed properly, by giving them specific tasks:
+ *   - {@link SrpUser}
+ *   - {@link com.kamrul.solid.principle.srp.following.UserManager}
+ *   - {@link com.kamrul.solid.principle.srp.following.UserRepository}
+ */
 
-@RequiredArgsConstructor
+@Setter
+@Getter
+@AllArgsConstructor
+@NoArgsConstructor
 public class User {
 
-  private final String username;
-  private final String password;
-  private final String email;
+  private String username;
+  private String password;
+  private String email;
 
   public void saveToDatabase() {
-    // Here we might use database connectivity to save user
+    // Database connectivity and logic to save user
+    System.out.println(
+        "Saving user to the database: " + username + "and password: " + Arrays.toString(
+            Base64.getEncoder().encode(password.getBytes(StandardCharsets.UTF_8))));
   }
 
   public void updateInDatabase() {
-    // Here we might use database connectivity to update user
+    // Database connectivity and logic to update user
+    System.out.println("Updating user in the database: " + username);
   }
 
   public void deleteFromDatabase() {
-    // Here we might use database connectivity to delete user
+    // Database connectivity and logic to delete user
+    System.out.println("Deleting user from the database: " + username);
   }
 
   public void sendEmailConfirmation() {
-    // Here we might implement email service to send email notification
+    // Logic to send email confirmation
+    System.out.println("Sending email confirmation to: " + email);
   }
-
 }
