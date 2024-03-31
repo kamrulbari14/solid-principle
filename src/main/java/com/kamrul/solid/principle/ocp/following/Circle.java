@@ -1,6 +1,6 @@
 package com.kamrul.solid.principle.ocp.following;
 
-public class Circle extends OcpShape{
+public class Circle extends OcpShape {
 
   @Override
   void draw() {
