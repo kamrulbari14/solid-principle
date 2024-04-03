@@ -1,6 +1,6 @@
 package com.kamrul.solid.principle.isp.following;
 
-public class Lamborghini implements RunningBehavior{
+public class Lamborghini implements RunningBehavior {
 
   @Override
   public String runSpeedCalculator() {
@@ -8,7 +8,7 @@ public class Lamborghini implements RunningBehavior{
   }
 }
 
-class FighterJet implements FlyingBehavior, RunningBehavior{
+class FighterJet implements FlyingBehavior, RunningBehavior {
 
   @Override
   public String flySpeedCalculator() {
